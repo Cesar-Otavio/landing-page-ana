@@ -1,0 +1,658 @@
+@use "reset/reset";
+@use "variables/variables";
+@use "mixins/mixins";
+@use "modal/modal";
+@use "modal/modal-liberdade";
+@use "liberdade";
+@use "raizes";
+
+// ==========================================
+// Variables
+// ==========================================
+
+$primary-green:  #284703;
+$dark-green:     #1e3503;
+$mid-green:      #375223;
+$accent-beige:   #ac9369;
+$light-beige:    #d9c9b0;
+$card-bg-from:   rgba(55, 85, 35, 0.95);
+$card-bg-to:     rgba(30, 53, 3, 0.98);
+$text-white:     #ffffff;
+$text-black:     #1a1a1a;
+
+$font-primary:   "Playfair Display", serif;
+$font-secondary: "Poppins", sans-serif;
+
+$mobile:   480px;
+$tablet:   768px;
+$desktop:  1024px;
+$large:    1200px;
+
+// ==========================================
+// Mixins
+// ==========================================
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// ==========================================
+// Reset & Base
+// ==========================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+// Estilos de body apenas para a index (sem classe no body)
+body:not(.liberdade-page):not(.raizes-page) {
+  font-family: $font-secondary;
+  background-color: $dark-green;
+  color: $text-white;
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+
+  // Textura de pontos sutil
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba($accent-beige, 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Orbe de luz quente atrás do hero
+  &::after {
+    content: '';
+    position: fixed;
+    top: -140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(
+      ellipse,
+      rgba($accent-beige, 0.1) 0%,
+      transparent 68%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ==========================================
+// div.security-badge  (fixed, fora do fluxo)
+// ==========================================
+
+.security-badge {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  background: rgba($accent-beige, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba($accent-beige, 0.35);
+  border-radius: 50%;
+  @include flex-center;
+  z-index: 1000;
+  cursor: pointer;
+  @include transition;
+
+  svg {
+    color: $accent-beige;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: rgba($accent-beige, 0.18);
+    border-color: $light-beige;
+    transform: scale(1.06);
+  }
+}
+
+// ==========================================
+// main.container
+// ==========================================
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 52px 20px 48px;
+
+  // ========================================
+  // section.hero
+  // ========================================
+
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.9s ease both;
+
+    // div.profile-image
+    .profile-image {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 26px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1.5px solid rgba($accent-beige, 0.4);
+        animation: ringPulse 3s ease-in-out infinite;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -16px;
+        border-radius: 50%;
+        border: 1px solid rgba($accent-beige, 0.14);
+        animation: ringPulse 3s ease-in-out infinite 0.55s;
+      }
+
+      img {
+        width: 116px;
+        height: 116px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2.5px solid $accent-beige;
+        display: block;
+      }
+
+      &:hover img {
+        border-color: $light-beige;
+      }
+    }
+
+    // h1.main-title
+    .main-title {
+      font-family: $font-primary;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: $text-white;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    // h4
+    h4 {
+      font-family: $font-secondary;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: $accent-beige;
+      margin-bottom: 10px;
+    }
+
+    // p.subtitle
+    .subtitle {
+      font-family: $font-secondary;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba($light-beige, 0.72);
+      line-height: 1.75;
+    }
+  }
+
+  // ========================================
+  // div.hero-divider
+  // ========================================
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 300px;
+    margin: 36px auto 48px;
+
+    &__line {
+      flex: 1;
+      height: 1px;
+      background: rgba($accent-beige, 0.25);
+    }
+
+    &__diamond {
+      width: 7px;
+      height: 7px;
+      background: $accent-beige;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+  }
+
+  // ========================================
+  // section.cards
+  // ========================================
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 52px;
+
+    // ======================================
+    // article.card
+    // ======================================
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      cursor: pointer;
+      animation: fadeInUp 0.7s ease both;
+      transition:
+        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+
+      &:nth-child(1) { animation-delay: 0.1s; }
+      &:nth-child(2) { animation-delay: 0.2s; }
+      &:nth-child(3) { animation-delay: 0.3s; }
+
+      // div.card__bg
+      &__bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(130deg, $card-bg-from 0%, $card-bg-to 100%);
+        border-radius: 18px;
+        border: 1px solid rgba($accent-beige, 0.3);
+        @include transition(border-color, 0.3s);
+      }
+
+      // div.card__glow
+      &__glow {
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        border: 1.5px solid transparent;
+        background:
+          linear-gradient(#1e3503, #1e3503) padding-box,
+          linear-gradient(
+            135deg,
+            rgba($accent-beige, 0),
+            rgba($accent-beige, 0.55),
+            rgba($accent-beige, 0)
+          ) border-box;
+        background-size: 200% 200%;
+        animation: borderShimmer 4s ease infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      // div.card__shine
+      &__shine {
+        position: absolute;
+        top: 0;
+        left: -80%;
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.09) 50%,
+          transparent 100%
+        );
+        transform: skewX(-15deg);
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      // a  — envolve card-content + card-image
+      a {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+
+        // div.card-content
+        .card-content {
+          flex: 1;
+          padding: 22px 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          // div.card-icon
+          .card-icon {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 10px;
+
+            &::before {
+              content: '';
+              display: block;
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background: $accent-beige;
+              flex-shrink: 0;
+            }
+
+            &::after {
+              content: '';
+              display: block;
+              width: 18px;
+              height: 1px;
+              background: rgba($accent-beige, 0.5);
+            }
+
+            svg { display: none; }
+
+            span {
+              font-size: 0.68rem;
+              font-weight: 600;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: $accent-beige;
+            }
+          }
+
+          // h2.card-title
+          .card-title {
+            font-family: $font-primary;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $text-white;
+            line-height: 1.15;
+            margin-bottom: 7px;
+            letter-spacing: 0.3px;
+          }
+
+          // p.card-subtitle (card "Fale Comigo")
+          .card-subtitle {
+            font-family: $font-secondary;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: rgba($light-beige, 0.65);
+            margin-bottom: 6px;
+          }
+
+          // p.card-description
+          .card-description {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba($light-beige, 0.65);
+            line-height: 1.55;
+          }
+
+          // div.card-arrow
+          .card-arrow {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 13px;
+
+            &__line {
+              width: 20px;
+              height: 1px;
+              background: rgba($accent-beige, 0.5);
+              @include transition(width, 0.3s);
+            }
+
+            &__head {
+              width: 6px;
+              height: 6px;
+              border-top: 1.5px solid $accent-beige;
+              border-right: 1.5px solid $accent-beige;
+              transform: rotate(45deg);
+              @include transition(transform, 0.3s);
+            }
+          }
+        }
+
+        // div.card-image
+        .card-image {
+          flex: 0 0 160px;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to right,
+              rgba($dark-green, 0.35) 0%,
+              transparent 45%
+            );
+            z-index: 1;
+            pointer-events: none;
+          }
+
+          img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+            @include transition(transform, 0.35s);
+          }
+        }
+      }
+
+      // Hover
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.45),
+          0 0 32px rgba($accent-beige, 0.1);
+
+        .card__bg   { border-color: rgba($light-beige, 0.5); }
+
+        .card__shine { animation: shineSweep 0.55s ease forwards; }
+
+        a {
+          .card-content .card-arrow {
+            &__line { width: 32px; }
+            &__head { transform: rotate(45deg) translate(2px, -2px); }
+          }
+
+          .card-image img { transform: scale(1.04); }
+        }
+      }
+
+      // Auto shine via JS
+      &.auto-shine .card__shine {
+        animation: shineSweep 0.65s ease forwards;
+      }
+    }
+  }
+
+  // ========================================
+  // footer.footer
+  // ========================================
+
+  .footer {
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid rgba($accent-beige, 0.2);
+
+    p {
+      font-size: 0.75rem;
+      color: rgba($accent-beige, 0.4);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+// ==========================================
+// Keyframes (globais — fora de qualquer seletor)
+// ==========================================
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.04); }
+}
+
+@keyframes borderShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shineSweep {
+  0%   { left: -80%; }
+  100% { left: 130%; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ==========================================
+// Utility Classes
+// ==========================================
+
+.text-center { text-align: center; }
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 30px; }
+.mb-4 { margin-bottom: 40px; }
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+.mt-3 { margin-top: 30px; }
+.mt-4 { margin-top: 40px; }
+
+// ==========================================
+// RESPONSIVE
+// ==========================================
+
+@media (max-width: $tablet) {
+  .container {
+    padding: 36px 16px 40px;
+
+    .hero {
+      margin-bottom: 28px;
+
+      .profile-image {
+        width: 96px;
+        height: 96px;
+
+        img { width: 96px; height: 96px; }
+      }
+
+      .main-title { font-size: 2rem; }
+      .subtitle   { font-size: 0.85rem; }
+    }
+
+    .hero-divider { margin: 28px auto 36px; }
+
+    .cards .card {
+      border-radius: 14px;
+
+      &__bg   { border-radius: 14px; }
+      &__glow { border-radius: 14px; }
+
+      a {
+        .card-content {
+          padding: 18px;
+
+          .card-title { font-size: 1.25rem; }
+
+          .card-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .card-arrow { display: none; }
+        }
+
+        .card-image { flex: 0 0 130px; }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .container {
+    padding: 24px 12px 32px;
+
+    .hero {
+      .profile-image {
+        width: 88px;
+        height: 88px;
+
+        img      { width: 88px; height: 88px; }
+        &::before { inset: -5px; }
+        &::after  { inset: -12px; }
+      }
+
+      .main-title { font-size: 1.7rem; }
+      .subtitle   { font-size: 0.8rem; }
+    }
+
+    .cards {
+      gap: 12px;
+
+      .card a {
+        .card-content {
+          padding: 14px 16px;
+
+          .card-title       { font-size: 1.1rem; margin-bottom: 4px; }
+          .card-description { font-size: 0.75rem; -webkit-line-clamp: 1; }
+        }
+
+        .card-image {
+          flex: 0 0 110px;
+
+          &::before { display: none; }
+        }
+      }
+    }
+
+    .footer p { font-size: 0.72rem; }
+  }
+}
