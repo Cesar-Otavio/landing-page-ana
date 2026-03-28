@@ -1,18 +1,64 @@
-<?php
-// Método Raízes do Corpo® - Página de vendas da mentoria
-?>
+<?php require_once __DIR__ . '/../../includes/config.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Método Raízes do Corpo® | Ana Paula Vieira</title>
-  <link rel="icon" href="../images/icons/favicon/colored-icon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../scss/style.css" />
+
+  <title>Método Raízes do Corpo® | <?= SITE_NAME ?> — Fisioterapia e Saúde Integrativa</title>
+  <meta name="description" content="O Método Raízes do Corpo® une Fisioterapia, Osteopatia, Constelação Familiar e Nova Medicina Germânica para encontrar a raiz emocional da sua dor. Com Ana Paula Vieira.">
+  <meta name="keywords" content="raízes do corpo, método raízes do corpo, ana paula vieira, fisioterapia integrativa, dor emocional, constelação familiar, nova medicina germânica, saúde integrativa, dor crônica, raiz emocional da dor">
+  <meta name="author" content="<?= SITE_NAME ?>">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
+  <meta name="theme-color" content="#284d00">
+
+  <link rel="canonical" href="https://metodoraizesdocorpo.com.br/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Método Raízes do Corpo® | <?= SITE_NAME ?>">
+  <meta property="og:description" content="Onde a dor física encontra a sua raiz emocional. Um método integrativo que une Fisioterapia, Osteopatia, Sistêmica e leitura biológica.">
+  <meta property="og:image" content="https://metodoraizesdocorpo.com.br/assets/images/og-image.jpg">
+  <meta property="og:url" content="https://metodoraizesdocorpo.com.br/">
+  <meta property="og:site_name" content="Método Raízes do Corpo®">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Método Raízes do Corpo® | <?= SITE_NAME ?>">
+  <meta name="twitter:description" content="Onde a dor física encontra a sua raiz emocional. Fisioterapia, Osteopatia e Sistêmica integradas.">
+  <meta name="twitter:image" content="https://metodoraizesdocorpo.com.br/assets/images/og-image.jpg">
+
+  <link rel="icon" type="image/x-icon" href="../images/icons/favicon/colored-icon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../scss/style.css">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Método Raízes do Corpo®",
+      "url": "https://metodoraizesdocorpo.com.br",
+      "image": "https://metodoraizesdocorpo.com.br/assets/images/og-image.jpg",
+      "description": "Método integrativo que une Fisioterapia, Osteopatia, Constelação Familiar e Nova Medicina Germânica para encontrar a raiz emocional da dor.",
+      "founder": {
+        "@type": "Person",
+        "name": "<?= SITE_NAME ?>",
+        "jobTitle": "Fisioterapeuta e Mentora em Saúde Integrativa",
+        "sameAs": "<?= INSTAGRAM ?>"
+      },
+      "areaServed": "BR",
+      "knowsAbout": ["Fisioterapia", "Osteopatia", "Constelação Familiar", "Nova Medicina Germânica", "Saúde Integrativa"]
+    }
+  </script>
 </head>
+
 <body class="raizes-page">
 
   <!-- ===================== HERO ===================== -->
@@ -20,11 +66,7 @@
     <div class="raizes-hero__overlay"></div>
     <div class="raizes-hero__content container">
       <span class="raizes-hero__eyebrow">Apresentando</span>
-      <img
-        src="../images/logos/raizes---branco.png"
-        alt="Raízes do Corpo"
-        class="raizes-hero__logo"
-      />
+      <img src="../images/logos/raizes---branco.png" alt="Raízes do Corpo" class="raizes-hero__logo" />
       <h1 class="raizes-hero__title">
         Onde a dor física encontra<br />
         <em>a sua raiz emocional</em>
@@ -184,7 +226,7 @@
   <section class="raizes-ana">
     <div class="container raizes-ana__container">
       <div class="raizes-ana__foto">
-        <img src="../images/ana/sobre-criadora.png" alt="Ana Paula Vieira" loading="lazy" />
+        <img src="../images/ana/sobre-criadora.png" alt="<?= SITE_NAME ?> — Fisioterapeuta e Mentora em Saúde Integrativa" loading="lazy" />
       </div>
       <div class="raizes-ana__texto">
         <p>Hoje sou mentora em Saúde Integrativa, mentora de mulheres que querem parar de sobreviver e começar a viver com leveza e sem dor.</p>
@@ -213,10 +255,7 @@
             <h3>Escuta do Corpo</h3>
             <p>Todo processo começa pelo sintoma. A dor não é apenas um problema a ser eliminado — ela é uma mensagem do corpo.</p>
             <div class="raizes-pilares__tags">
-              <span>Postura</span>
-              <span>Tensão muscular</span>
-              <span>Padrões biomecânicos</span>
-              <span>Região da dor</span>
+              <span>Postura</span><span>Tensão muscular</span><span>Padrões biomecânicos</span><span>Região da dor</span>
             </div>
             <p class="raizes-pilares__nota">Minha base em Fisioterapia e Osteopatia permite entender o que o corpo está expressando fisicamente.</p>
           </div>
@@ -251,10 +290,7 @@
             <h3>Raiz Sistêmica</h3>
             <p>Nesse ponto você amplia o olhar. Com base na visão da Constelação Familiar, observamos se aquele sintoma pode estar ligado a:</p>
             <div class="raizes-pilares__tags">
-              <span>Padrões familiares</span>
-              <span>Histórias não resolvidas</span>
-              <span>Lealdades invisíveis</span>
-              <span>Exclusões do sistema</span>
+              <span>Padrões familiares</span><span>Histórias não resolvidas</span><span>Lealdades invisíveis</span><span>Exclusões do sistema</span>
             </div>
             <p class="raizes-pilares__nota">Muitas vezes a pessoa está carregando algo que não começou nela.</p>
           </div>
@@ -285,10 +321,18 @@
       <img src="../images/logos/raizes---branco.png" alt="Raízes do Corpo" class="raizes-cta__logo" />
       <h2 class="raizes-cta__title">Pronta para descobrir a raiz da sua dor?</h2>
       <p class="raizes-cta__texto">Seu corpo tem uma história. É hora de ouvi-la.</p>
-      <a href="#contato" class="raizes-cta__btn">Quero começar minha jornada</a>
+      <a href="<?= get_whatsapp_link('Olá, gostaria de saber mais sobre o Método Raízes do Corpo') ?>"
+        target="_blank" rel="noopener noreferrer" class="raizes-cta__btn">
+        Quero começar minha jornada
+      </a>
     </div>
   </section>
 
+  <footer style="display:none">
+    <p><?= SITE_NAME ?> © <?= get_current_year() ?> - Todos os direitos reservados</p>
+  </footer>
+
   <script src="../js/main.js"></script>
 </body>
+
 </html>
