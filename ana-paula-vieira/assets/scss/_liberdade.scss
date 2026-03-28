@@ -519,30 +519,36 @@
     .carousel-controls {
       display: block;
 
-      // button.carousel-btn
       .carousel-btn {
         position: absolute;
-        top: 64%;
-        transform: translateY(170%);
-        background: #ffffff;
-        color: #000000;
+        top: 50%;
+        transform: translateY(-50%);
+        background: $text-white;
+        color: $primary-green;
         border: none;
-        width: 42px;
-        height: 42px;
         border-radius: 50%;
         cursor: pointer;
         z-index: 20;
-        font-size: 18px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+
+        // Desktop
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+
+        &:hover {
+          background: $primary-green;
+          color: $text-white;
+          transform: translateY(-50%) scale(1.08);
+        }
 
         &.prev {
-          left: -10px;
-          margin-left: 12px;
+          left: 12px;
         }
 
         &.next {
-          right: -10px;
-          margin-right: 12px;
+          right: 12px;
         }
       }
     }
@@ -1337,9 +1343,24 @@
       align-items: center;
     }
 
-    .testimonials-carousel .testimonials-section .container .testimonials-grid .testimonial-card {
-      flex: 0 0 calc(50% - 12px);
-      max-width: calc(50% - 12px);
+    .testimonials-carousel {
+
+      .testimonials-section .container .testimonials-grid .testimonial-card {
+        flex: 0 0 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+      }
+
+      // Setas — Tablet
+      .carousel-controls .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &.prev { left: 6px; margin-left: 0; }
+        &.next { right: 6px; margin-right: 0; }
+      }
     }
 
     .creator-section .container .creator-content {
@@ -1390,6 +1411,7 @@
       }
 
       .feelings-grid .feeling-card {
+        flex: none;
         padding: 24px;
       }
     }
@@ -1404,14 +1426,29 @@
       }
     }
 
-    .testimonials-carousel .testimonials-section .container {
-      .section-title-center {
-        font-size: 1.8rem;
+    .testimonials-carousel {
+
+      .testimonials-section .container {
+        .section-title-center {
+          font-size: 1.8rem;
+        }
+
+        .testimonials-grid .testimonial-card {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
       }
 
-      .testimonials-grid .testimonial-card {
-        flex: 0 0 100%;
-        max-width: 100%;
+      // Setas — Mobile
+      .carousel-controls .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &.prev { left: 4px; margin-left: 0; }
+        &.next { right: 4px; margin-right: 0; }
       }
     }
 

@@ -464,7 +464,7 @@
                     </div>
 
                     <a href="https://api.whatsapp.com/send/?phone=5516996180382&text=Ol%C3%A1%2C+quero+garantir+minha+vaga&type=phone_number&app_absent=0" target="_blank" class="cta-btn-main">
-                        Quero garantir minha vaga →
+                        Quero garantir minha vaga
                     </a>
 
                     <p class="cta-guarantee">

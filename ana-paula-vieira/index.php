@@ -26,7 +26,7 @@
         </svg>
     </div>
 
-    <main class="container">
+    <main class="container space-card">
 
         <!-- Hero -->
         <section class="hero">

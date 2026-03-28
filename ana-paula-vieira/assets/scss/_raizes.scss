@@ -38,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("../images/ana/capa.png") center center / cover no-repeat;
+    background: url("../images/ana/capa.png") center 25% / 60% no-repeat;
     overflow: hidden;
 
     // div.raizes-hero__overlay
@@ -137,13 +137,18 @@
     }
 
     // div.raizes-hero__scroll-indicator
-    &__scroll-indicator {
+        &__scroll-indicator {
       position: absolute;
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
 
+      // Linha pulsante
       span {
         display: block;
         width: 1px;
@@ -151,6 +156,19 @@
         background: linear-gradient(to bottom, rgba($light-beige, 0), $light-beige);
         margin: 0 auto;
         animation: scrollPulse 2s ease-in-out infinite;
+      }
+
+      // Seta chevron animada
+      &::after {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-right: 1.5px solid $light-beige;
+        border-bottom: 1.5px solid $light-beige;
+        transform: rotate(45deg);
+        animation: scrollArrow 2s ease-in-out infinite;
+        opacity: 0;
       }
     }
   }
@@ -643,7 +661,7 @@
         filter: grayscale(15%);
 
         @media (max-width: $tablet) {
-          height: 320px;
+          height: auto;
           max-width: 320px;
           margin: 0 auto;
           display: block;
@@ -980,15 +998,26 @@
 // ==========================================
 
 @keyframes scrollPulse {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scaleY(0.8);
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleY(0.85);
   }
-
   50% {
     opacity: 1;
     transform: scaleY(1);
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-4px, -4px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(4px, 4px);
   }
 }
