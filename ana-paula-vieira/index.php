@@ -8,7 +8,7 @@
     <meta name="description" content="Ana Paula Vieira - Transformando vidas através de orientação profissional personalizada">
     <title>Ana Paula Vieira - Mentoria</title>
 
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon/colored-icon.ico">
     <link rel="stylesheet" href="assets/scss/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
