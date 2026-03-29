@@ -1,125 +1,123 @@
-# Ana Paula Vieira — Landing Pages & Presença Digital
+# Ana Paula Vieira — Branch `refeito/html`
 
-> Projeto desenvolvido como **freelancer** para [Ana Paula Vieira](https://www.instagram.com/anavieirapitta/), mentora em Saúde Integrativa e Sistêmica, criadora do **Método Raízes do Corpo®** e da **Mentoria Liberdade Sistêmica**.
-
----
-
-## Sobre o Projeto
-
-Este projeto é composto por um ecossistema de landing pages interligadas, desenvolvidas para apresentar os produtos digitais e serviços de Ana Paula Vieira. O objetivo foi criar uma presença digital coesa, elegante e de alta conversão — alinhada à identidade visual e à proposta terapêutica da mentora.
-
-O sistema é estruturado em três camadas:
-
-- **Página principal** (`index.php`) — hub de navegação entre os produtos
-- **Mentoria Liberdade Sistêmica** (`liberdade.php`) — página de vendas completa com carrossel de depoimentos, seção de preços, FAQ e CTA integrado ao WhatsApp
-- **Método Raízes do Corpo®** (`raizes.php`) — página de apresentação do método com timeline de trajetória, os 5 pilares e seção de conversão
+> Esta branch é uma reescrita estática do projeto original (branch `main`), convertendo todas as páginas PHP para HTML puro, CSS e JavaScript — sem dependências de servidor — permitindo a publicação direta na **Netlify** ou qualquer plataforma de hospedagem estática.
 
 ---
 
-## Links
+## Sobre esta Branch
 
-| Destino                      | URL                                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| Site principal               | [metodoraizesdocorpo.com.br](https://metodoraizesdocorpo.com.br)                     |
-| Mentoria Liberdade Sistêmica | [liberdade.metodoraizesdocorpo.com.br](https://liberdade.metodoraizesdocorpo.com.br) |
-| Instagram da Ana             | [@anavieirapitta](https://www.instagram.com/anavieirapitta/)                         |
+|                             | `main`                | `refeito/html`                    |
+| --------------------------- | --------------------- | --------------------------------- |
+| Linguagem                   | PHP + SCSS            | HTML + CSS + JS                   |
+| Servidor necessário         | Sim (Apache + PHP)    | Não                               |
+| Hospedagem                  | Hostinger, 000webhost | **Netlify**, GitHub Pages, Vercel |
+| Configuração centralizada   | `includes/config.php` | Valores fixos no HTML             |
+| URLs limpas via `.htaccess` | Sim                   | Não necessário                    |
 
----
-
-## Tecnologias Utilizadas
-
-| Tecnologia                     | Uso                                                         |
-| ------------------------------ | ----------------------------------------------------------- |
-| **PHP 8+**                     | Estrutura das páginas, includes e configuração centralizada |
-| **SCSS / Sass**                | Estilização modular com variáveis, mixins e partials        |
-| **CSS3**                       | Animações, responsividade e layout                          |
-| **JavaScript (Vanilla)**       | Carrossel de depoimentos, FAQ accordion e modais            |
-| **HTML5 semântico**            | Estrutura acessível e otimizada para SEO                    |
-| **Apache / .htaccess**         | Remoção de `.php` das URLs e proteção de diretórios         |
-| **Google Fonts**               | Tipografia: Playfair Display + Poppins                      |
-| **Schema.org (JSON-LD)**       | SEO avançado com rich results para Google                   |
-| **Open Graph + Twitter Cards** | Compartilhamento otimizado em redes sociais                 |
+> Esta branch **não deve ser mergeada na `main`**. Ela existe exclusivamente para deploy em plataformas estáticas.
 
 ---
 
-## Estrutura do Projeto
+## Estrutura
 
 ```
 📦ana-paula-vieira
  ┣ 📂assets
+ ┃ ┣ 📂css
+ ┃ ┃ ┗ 📜style.css          # CSS compilado único (gerado a partir do SCSS da main)
  ┃ ┣ 📂images
- ┃ ┃ ┣ 📂ana              # Fotos da mentora
- ┃ ┃ ┣ 📂comentarios      # Fotos dos depoimentos
- ┃ ┃ ┣ 📂icons            # Ícones e favicon
- ┃ ┃ ┗ 📂logos            # Logos em variações de cor
+ ┃ ┃ ┣ 📂ana                # Fotos da mentora
+ ┃ ┃ ┣ 📂comentarios        # Fotos dos depoimentos
+ ┃ ┃ ┣ 📂icons              # Ícones e favicon
+ ┃ ┃ ┗ 📂logos              # Logos em variações de cor
  ┃ ┣ 📂js
  ┃ ┃ ┣ 📜carrossel-liberdade.js   # Carrossel de depoimentos
  ┃ ┃ ┣ 📜liberdade.js             # Scripts da página Liberdade
  ┃ ┃ ┣ 📜main.js                  # Scripts globais
  ┃ ┃ ┣ 📜modal-liberdade.js       # Modal da Liberdade
- ┃ ┃ ┗ 📜modal.js                 # Modal global
- ┃ ┣ 📂pages
- ┃ ┃ ┣ 📜liberdade.php    # Landing page — Mentoria Liberdade Sistêmica
- ┃ ┃ ┗ 📜raizes.php       # Landing page — Método Raízes do Corpo®
- ┃ ┗ 📂scss
- ┃ ┃ ┣ 📂mixins           # Mixins reutilizáveis
- ┃ ┃ ┣ 📂modal            # Estilos dos modais
- ┃ ┃ ┣ 📂reset            # Reset CSS
- ┃ ┃ ┣ 📂variables        # Variáveis globais (cores, fontes, breakpoints)
- ┃ ┃ ┣ 📜style.scss       # Entry point do SCSS
- ┃ ┃ ┣ 📜_liberdade.scss  # Estilos da página Liberdade
- ┃ ┃ ┗ 📜_raizes.scss     # Estilos da página Raízes
- ┣ 📂includes
- ┃ ┣ 📜config.php         # Configuração centralizada (URLs, contatos, helpers)
- ┃ ┣ 📜modal-liberdade.php
- ┃ ┗ 📜modal.php
- ┣ 📜.htaccess            # URLs limpas + proteção de diretórios
- ┣ 📜index.php            # Hub principal
+ ┃ ┃ ┗ 📜modal.js                 # Modal de cookies
+ ┃ ┗ 📂pages
+ ┃ ┃ ┣ 📜liberdade.html    # Landing page — Mentoria Liberdade Sistêmica
+ ┃ ┃ ┗ 📜raizes.html       # Landing page — Método Raízes do Corpo®
+ ┣ 📜.gitignore
+ ┣ 📜index.html             # Hub principal
  ┗ 📜README.md
 ```
 
 ---
 
-## Configuração
+## O que foi convertido
 
-Todas as informações centrais do projeto ficam em `includes/config.php`:
+### PHP → HTML
 
-```php
-define('SITE_NAME', 'Ana Paula Vieira');
-define('SITE_URL', 'https://metodoraizesdocorpo.com.br');
-define('WHATSAPP_NUMBER', '5516996180382');
-define('WHATSAPP_LIBERDADE', 'https://api.whatsapp.com/send/?phone=...');
-define('INSTAGRAM', 'https://www.instagram.com/anavieirapitta/');
-```
+- `index.php` → `index.html`
+- `assets/pages/liberdade.php` → `assets/pages/liberdade.html`
+- `assets/pages/raizes.php` → `assets/pages/raizes.html`
 
-Para atualizar número de WhatsApp, URLs ou redes sociais, basta editar este arquivo — todas as páginas refletem a mudança automaticamente.
+### Includes PHP → Inline HTML
 
----
+| Include removido               | Solução adotada                                            |
+| ------------------------------ | ---------------------------------------------------------- |
+| `includes/config.php`          | Valores fixos diretamente no HTML                          |
+| `includes/modal.php`           | Modal de cookies colado inline no `index.html`             |
+| `includes/modal-liberdade.php` | Modal do Raízes do Corpo colado inline no `liberdade.html` |
 
-## Segurança e SEO
+### SCSS → CSS
 
-- `Options -Indexes` no `.htaccess` — impede listagem de diretórios
-- URLs limpas sem `.php` via mod_rewrite
-- Headers de segurança (`X-Frame-Options`, `X-XSS-Protection`, `X-Content-Type-Options`)
-- Schema.org estruturado (`Person`, `ProfessionalService`, `OfferCatalog`) para rich results no Google
-- Canonical tags por página
-- Open Graph e Twitter Cards configurados por página
+- Toda a estilização foi compilada em um único arquivo `assets/css/style.css`
+- Os arquivos `.scss` da `main` **não existem** nesta branch
 
----
+### Variáveis PHP → Valores fixos
 
-## Responsividade
-
-O layout é totalmente responsivo com breakpoints para:
-
-- **Desktop** — acima de 1024px
-- **Tablet** — até 768px
-- **Mobile** — até 480px
+| Variável              | Valor aplicado                              |
+| --------------------- | ------------------------------------------- |
+| `SITE_NAME`           | `Ana Paula Vieira`                          |
+| `SITE_URL`            | `https://metodoraizesdocorpo.com.br`        |
+| `WHATSAPP_LIBERDADE`  | URL completa do WhatsApp                    |
+| `INSTAGRAM`           | `https://www.instagram.com/anavieirapitta/` |
+| `get_current_year()`  | `2026`                                      |
+| `get_whatsapp_link()` | URL `wa.me` com mensagem encodada           |
 
 ---
 
-## Sobre a Cliente
+## Deploy na Netlify
 
-**Ana Paula Vieira** é fisioterapeuta, terapeuta sistêmica e mentora em Saúde Integrativa. Criadora do **Método Raízes do Corpo®** — que integra Fisioterapia, Osteopatia, Constelação Familiar e Nova Medicina Germânica — e da **Mentoria Liberdade Sistêmica**, voltada para mulheres que buscam se libertar de padrões emocionais e viver com mais leveza.
+1. No GitHub, selecione a branch `refeito/html`
+2. Acesse [netlify.com](https://netlify.com) e clique em **Add new site → Import an existing project**
+3. Conecte seu repositório GitHub
+4. Em **Branch to deploy**, selecione `refeito/html`
+5. Deixe **Build command** vazio
+6. Em **Publish directory**, deixe `/` (raiz)
+7. Clique em **Deploy site**
+
+> Nenhuma configuração de build é necessária — o projeto é 100% estático.
+
+---
+
+## Páginas
+
+| Página                       | Arquivo                       | URL esperada                                          |
+| ---------------------------- | ----------------------------- | ----------------------------------------------------- |
+| Hub principal                | `index.html`                  | `metodoraizesdocorpo.com.br`                          |
+| Mentoria Liberdade Sistêmica | `assets/pages/liberdade.html` | `liberdade.metodoraizesdocorpo.com.br`                |
+| Método Raízes do Corpo®      | `assets/pages/raizes.html`    | `metodoraizesdocorpo.com.br/assets/pages/raizes.html` |
+
+---
+
+## Atualização de conteúdo
+
+Como não há backend, qualquer alteração de texto, URL ou contato deve ser feita **diretamente nos arquivos HTML**. Os pontos mais comuns de atualização são:
+
+- **WhatsApp** — buscar por `api.whatsapp.com` ou `wa.me` nos três arquivos
+- **Preço da mentoria** — buscar por `997` no `liberdade.html`
+- **Ano do footer** — buscar por `2026` nos arquivos
+- **Instagram** — buscar por `anavieirapitta`
+
+---
+
+## Cliente
+
+**Ana Paula Vieira** — Mentora em Saúde Integrativa e Sistêmica
 
 - Instagram: [@anavieirapitta](https://www.instagram.com/anavieirapitta/)
 - Site: [metodoraizesdocorpo.com.br](https://metodoraizesdocorpo.com.br)
@@ -130,6 +128,4 @@ O layout é totalmente responsivo com breakpoints para:
 
 Projeto desenvolvido por **Cesar Otavio da Silva Boiani** como trabalho freelancer.
 
----
-
-_Feito com cuidado para uma profissional que transforma vidas._
+_Para a versão com PHP e SCSS, consulte a branch `main`._
