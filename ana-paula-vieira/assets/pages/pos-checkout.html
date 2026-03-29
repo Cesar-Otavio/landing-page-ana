@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Compra Confirmada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon/colored-icon.ico">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3503, #0f1f02);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1e3503;
+            padding: 40px 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(172, 147, 105, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+
+        .alert {
+            background: rgba(172, 147, 105, 0.15);
+            border: 1px solid #ac9369;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .countdown {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #ac9369;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: #ac9369;
+            color: #1e3503;
+            padding: 16px 28px;
+            font-size: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            animation: pulse 1.8s infinite;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: scale(1.06);
+            background: #c3a97a;
+        }
+
+        .proof {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(172, 147, 105, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(172, 147, 105, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(172, 147, 105, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>✨ Compra Confirmada!</h1>
+
+        <p class="subtitle">
+            Sua vaga na mentoria foi garantida com sucesso.
+        </p>
+
+        <div class="alert">
+            ⚠️ Para acessar o conteúdo e receber as instruções, entre no grupo exclusivo.
+        </div>
+
+        <div class="countdown" id="timer">
+            Liberando acesso por 05:00
+        </div>
+
+        <!-- TROQUE PELO SEU LINK -->
+        <a href="https://chat.whatsapp.com/SEU-LINK-AQUI" target="_blank" class="btn">
+            Entrar no Grupo
+        </a>
+
+        <div class="proof">
+            🔒 Acesso exclusivo • Vagas limitadas
+        </div>
+    </div>
+
+    <script>
+        let time = 300;
+
+        const timer = document.getElementById("timer");
+
+        setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timer.innerHTML = `⏳ Liberação expira em ${minutes}:${seconds}`;
+
+            if (time > 0) {
+                time--;
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
